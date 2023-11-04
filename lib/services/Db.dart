@@ -10,6 +10,7 @@ class Db {
       Supabase.instance.client.from(table);
 
   SupabaseQueryBuilder fromCountries() => _from('countries');
+  SupabaseQueryBuilder fromMessages() => _from('messages');
 
   Future<void> initialize() async {
     const url = kDebugMode
