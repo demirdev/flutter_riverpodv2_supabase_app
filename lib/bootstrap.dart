@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_riverpodv2_supabase_app/services/Db.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
@@ -14,11 +14,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      await Supabase.initialize(
-        url: 'https://aomulibjnrnnklcbkjkt.supabase.co',
-        anonKey:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFvbXVsaWJqbnJubmtsY2Jramt0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkwNTc5NzYsImV4cCI6MjAxNDYzMzk3Nn0.o3-ZI4sgV1ICIEIT36YfzU4ynkVhjGueFwMQMEtbZaY',
-      );
+      await Db.instance.initialize();
 
       runApp(ProviderScope(child: await builder()));
     },
